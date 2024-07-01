@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Flight Booking System</title>
+</head>
+<body>
+    <nav>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Home</a>
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('user_dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+                {% if session.get('is_admin') %}
+                    <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+                {% endif %}
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('signup') }}">Sign Up</a>
+            {% endif %}
+        </div>
+        <div class="theme-toggle">
+            <span>Theme</span>
+            <label class="mode-toggle">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </nav>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modeToggle = document.querySelector('.mode-toggle input');
+            modeToggle.addEventListener('change', function () {
+                document.body.classList.toggle('dark-mode');
+                document.querySelector('nav').classList.toggle('dark-mode');
+                document.querySelector('.content').classList.toggle('dark-mode');
+            });
+        });
+    </script>
+</body>
+</html>
