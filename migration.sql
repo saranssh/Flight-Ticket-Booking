@@ -1,0 +1,24 @@
+
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email VARCHAR(120) NOT NULL UNIQUE,
+    password VARCHAR(60) NOT NULL,
+    is_admin BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE flight (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    flight_name VARCHAR(120) NOT NULL,
+    flight_number VARCHAR(60) NOT NULL,
+    date VARCHAR(60) NOT NULL,
+    total_seats INTEGER DEFAULT 60,
+    available_seats INTEGER DEFAULT 60
+);
+
+CREATE TABLE booking (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    flight_id INTEGER NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES user(id),
+    FOREIGN KEY(flight_id) REFERENCES flight(id)
+);
