@@ -1,0 +1,13 @@
+<!-- templates/view_bookings.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h2>View Bookings</h2>
+<ul>
+    {% for booking in bookings %}
+        <li>
+            User ID: {{ booking.user_id }}, Flight: {{ booking.flight.flight_name }} ({{ booking.flight.flight_number }}) on {{ booking.flight.date }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Add Flight</h2>
+<form method="POST">
+    <label>Flight Name:</label>
+    <input type="text" name="flight_name" required>
+    <label>Flight Number:</label>
+    <input type="text" name="flight_number" required>
+    <label>Date:</label>
+    <input type="date" name="date" required>
+    <label>Total Seats:</label>
+    <input type="number" name="total_seats" required>
+    <button type="submit">Add Flight</button>
+</form>
+{% if message %}
+    <p style="color: green;">{{ message }}</p>
+{% endif %}
+{% endblock %}

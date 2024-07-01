@@ -1,0 +1,30 @@
+<!-- templates/search_flight.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Search Flight</h2>
+<form method="POST" action="{{ url_for('search_flight') }}">
+    <label for="flight_name">Flight Name:</label>
+    <input type="text" id="flight_name" name="flight_name">
+    <label for="flight_number">Flight Number:</label>
+    <input type="text" id="flight_number" name="flight_number">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date">
+    <button type="submit">Search</button>
+</form>
+
+{% if flights %}
+    <h3>Available Flights</h3>
+    <ul>
+        {% for flight in flights %}
+            <li>
+                {{ flight.flight_name }} - {{ flight.flight_number }} on {{ flight.date }} - Available Seats: {{ flight.available_seats }}
+                <form method="POST" action="{{ url_for('book_tickets') }}" style="display:inline;">
+                    <input type="hidden" name="flight_id" value="{{ flight.id }}">
+                    <button type="submit">Book</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
