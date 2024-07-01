@@ -29,7 +29,6 @@ This is a Flask-based web application for booking flights, managing bookings, an
 4. **Usage:**
 
    -Navigate to http://localhost:5000 to access the application.
-   -Sign up as a new user or log in as an existing user or admin to start booking flights and managing bookings.
 
 5. **Credits:**
 
