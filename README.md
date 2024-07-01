@@ -15,3 +15,8 @@ This is a Flask-based web application for booking flights, managing bookings, an
    ```bash
    git clone <repository_url>
    cd <repository_directory>
+2. **Run the application:**
+
+   ```bash
+   python app.py
+The application will be accessible at http://localhost:5000.
