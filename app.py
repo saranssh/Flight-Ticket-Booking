@@ -6,14 +6,13 @@ import bcrypt
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 
-# Use /tmp directory for SQLite database in Vercel
-db_path = '/tmp/db.sqlite' if os.getenv('VERCEL') else 'db.sqlite'
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
+#Connecting to my sql database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# Required database models
+#required database models
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -34,7 +33,8 @@ class Booking(db.Model):
     flight_id = db.Column(db.Integer, db.ForeignKey('flight.id'), nullable=False)
     flight = db.relationship('Flight', backref=db.backref('bookings', lazy=True))
 
-# Defining the table as per requirements
+
+#defining the table as per reuirements
 def create_tables():
     with app.app_context():
         db.create_all()
@@ -43,7 +43,6 @@ def create_tables():
             admin_user = User(email='admin@example.com', password=hashed_password.decode('utf-8'), is_admin=True)
             db.session.add(admin_user)
             db.session.commit()
-        print("Tables created successfully")
 
 @app.route('/')
 def index():
@@ -54,7 +53,8 @@ def login():
     if request.method == 'POST':
         data = request.form
         user = User.query.filter_by(email=data['email']).first()
-        if user and bcrypt.checkpw(data['password'].encode('utf-8'), user.password.encode('utf-8')):
+        if user and bcrypt.checkpw(data['password'].encode('utf-8'),
+            user.password.encode('utf-8')):
             session['user_id'] = user.id
             session['is_admin'] = user.is_admin
             return redirect(url_for('user_dashboard' if not user.is_admin else 'admin_dashboard'))
@@ -130,6 +130,8 @@ def book_tickets():
     
     flights = Flight.query.all()
     return render_template('book_tickets.html', flights=flights)
+
+
 
 @app.route('/add_flight', methods=['GET', 'POST'])
 def add_flight():
