@@ -14,12 +14,7 @@ Brief description or introduction of your project.
 - instance/
 - db.sqlite
 - static/
-  └── css/
-      └── style.css
 - templates/
-  ├── template1.html
-  ├── template2.html
-  ├── ...
 - app.py
 
 ## Setup Instructions
