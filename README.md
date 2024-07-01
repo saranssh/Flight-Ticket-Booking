@@ -21,7 +21,8 @@
 
    ```bash
    python app.py
-  The application will be accessible at http://localhost:5000.
+   ```
+     The application will be accessible at http://localhost:5000.
 
 3. **Database initialization:**
 
