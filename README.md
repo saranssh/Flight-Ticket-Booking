@@ -1,6 +1,7 @@
 # Flight Ticket Booking Application
 
 This is a Flask-based web application for booking flights, managing bookings, and administering flights.
+The application is hosted on [PythonAnywhere](https://apexrider.pythonanywhere.com/).
 
 ## Features
 
