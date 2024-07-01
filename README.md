@@ -20,3 +20,17 @@ This is a Flask-based web application for booking flights, managing bookings, an
    ```bash
    python app.py
 The application will be accessible at http://localhost:5000.
+
+3. **Database initialization:**
+
+   -The SQLite database file db.sqlite is used to store data.
+   -Tables are created automatically on application startup.
+
+4. **Usage:**
+
+   -Navigate to http://localhost:5000 to access the application.
+   -Sign up as a new user or log in as an existing user or admin to start booking flights and managing bookings.
+
+5. **Credits:**
+
+This application was developed by Saransh S.
